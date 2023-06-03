@@ -1,0 +1,18 @@
+name: CI/CD Workflow
+on: [push]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: lint
+        run: npm lint
+      - name: build
+        run: npm build
+      - name: test
+        run: npm test
+  cd:
+    needs: [ci]
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo "Deploying.."
